@@ -1,0 +1,25 @@
+<%- include ../layouts/header.ejs %>
+
+        <div class="page-data">
+		
+      
+         <div class="data-table">
+		  <a class="a-inside edit" href="/invoiceApp/monthly/">Monthy Subscription Model</a>     
+		   <a class="a-inside edit" href="/invoiceApp/metered/">Metered Subscription Model</a>     
+
+		 <div class='clsInfo'>
+		 <br/>
+			<br/>
+			<h4>Monthy Subscription</h4>
+			With a MONTHLY subscription model, the customers pays a flat monthly fee and is allowed to make a pre-determined number of API calls per month. For example, a customer pays $100 to access up to 10,000 API calls per month. Whether they make 0 API calls or 10,000 API calls they are charged $100. If a customer subscribes in the middle of the month, they would be charged a pro-rated amount for the number of days their subscription was active that month.
+
+			<br/>
+			<br/>
+			<h4>Metered Subscription</h4>
+			With the Metered billing model you charge your customers a fee for each API call they make. Your customers are able to make as many calls as they want and are charged based on the total number of calls made. If the customer makes 7,000 API calls at $0.01 per call then the bill at the end of the month would be $70
+		 </div>
+            
+         </div>
+        </div>
+        
+<%- include ../layouts/footer.ejs %>

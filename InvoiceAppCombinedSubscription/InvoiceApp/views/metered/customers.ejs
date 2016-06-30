@@ -1,0 +1,49 @@
+<%- include ../layouts/header.ejs %>
+
+        <div class="page-data">
+		
+      
+         <div class="data-table">
+		  <a class="a-inside edit" style="width:120px;background-color:#5cb85c" href="/"><< Back</a> 
+		 <br/>
+		  <br/>
+		 <div class='clsInfo'>
+		 List of customers and their customer Ids are given below.
+		 Click on 'View Invoices' to create invoice or view previous invoices.
+		 </div>
+            <table border="1" cellpadding="7" cellspacing="7">
+                <tr>
+                    <th>Name</th>
+                    <th>Stripe Customer Id</th>
+                    
+					<th width="120px"></th>
+                </tr>
+                               
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>
+                 
+                <tr>
+                     <td><%=data[i].customerName%></td>
+                    <td><%=data[i].stripeCustomerId%></td>
+                   
+					
+                   <td>
+                        <a class="a-inside edit" href="/invoiceapp/metered/customer/<%=data[i].stripeCustomerId%>">View Invoices</a>         
+                    </td>
+                </tr>
+            <% }
+            
+             }else{ %>
+                 <tr>
+                    <td colspan="3">No Data</td>
+                 </tr>
+            <% } %>
+                
+                              
+                
+            </table>
+         </div>
+        </div>
+        
+<%- include ../layouts/footer.ejs %>

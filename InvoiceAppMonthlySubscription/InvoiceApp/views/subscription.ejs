@@ -1,0 +1,82 @@
+<%- include layouts/header.ejs %>
+		 
+		 
+		 <div class="page-data">
+		 	
+         <div class="data-table">
+		 <a class="a-inside edit" style="width:120px;background-color:#5cb85c" href="/"> << Back </a> 
+		
+		<br/>
+		<br/>
+		 <div class='clsInfo'>
+			Click on 'Create Subcription' to create a monthly subscription plan for the customer.There is already a monthly plan created in stripe which has fixed monthly invoice of $200.When clicking on 'Create Subcription' a stripe API call is made to create subcription and the montly plan is associated with the stripe subscription.
+		</div>
+		 <form method="post" action="/invoiceApp/stripe/createPlan">
+		 
+		  <a class="a-inside edit" style="width:120px;background-color:#5cb85c" href="/invoiceApp/stripe/createSubscription/cus_5RU0CtqPlIsMNb">Create Subscription</a> 
+		
+		 </form>
+
+		 	
+         </div>
+        </div>
+
+		 
+        <div class="page-data">
+		<div style="margin-left:10px">
+         <b>Stripe Subscriptions</b>
+		</div>
+      
+		
+         <div class="data-table">
+		  <div class='clsInfo'>
+	  
+			The subscription made by the customer is given below.
+			<br/>
+			Subcription can be deleted which will stop invoice to the customer. Click on 'Delete Subscription' to delete subscription. When clicking on Delete Subcription a stripe API call is made to delete the stripe subscription.
+		 </div>
+            <table border="1" cellpadding="7" cellspacing="7">
+                <tr>
+                     <th>#</th>
+                    <th>Subscription Id</th>
+					<th>Plan Name</th>
+                   
+					<th>Amount</th>
+                     <th></th>
+					 
+                </tr>
+                               
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>
+                 
+                <tr>
+					<td><%=i+1%></td>
+                    <td><%=data[i].id%></td>
+					<td><%=data[i].plan.name%></td>
+                    
+                    <td>$<%=data[i].plan.amount/100%></td>
+					<td>
+				    
+							<a class="a-inside edit" style="width:120px;background-color:#5bc0de"  href="/invoiceApp/stripe/cancelSubscription/<%=data[i].customer%>/<%=data[i].id%>" target="_blank" >Delete Subscription</a>  
+					
+						
+                    </td>
+					
+                  
+                </tr>
+            <% }
+            
+             }else{ %>
+                 <tr>
+                    <td colspan="5">No Data</td>
+                 </tr>
+            <% } %>
+                
+                              
+                
+            </table>
+         </div>
+        </div>
+        
+<%- include layouts/footer.ejs %>

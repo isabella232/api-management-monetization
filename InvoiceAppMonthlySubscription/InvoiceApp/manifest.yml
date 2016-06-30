@@ -1,0 +1,3 @@
+applications:
+- name:    cf-node-api-mgmt-monthly-subscription
+  host:    cf-node-api-mgmt-monthly-subscription

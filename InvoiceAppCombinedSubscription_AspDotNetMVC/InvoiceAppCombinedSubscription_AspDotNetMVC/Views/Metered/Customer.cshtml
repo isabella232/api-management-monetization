@@ -1,0 +1,146 @@
+﻿@using InvoiceAppCombinedSubscription_AspDotNetMVC.Controllers;
+@model MeteredInvoiceViewModel
+@{
+    ViewBag.Title = "Subscription";
+}
+
+
+<div>
+    <div id="wrapper">
+        <div class="page-header"><h2>Metered Subscription</h2><h4>Invoices</h4></div>
+        <div class="page-container">
+
+
+
+            <div class="page-data">
+                <div style="margin-left:10px">
+                    <a class="a-inside edit btn btn-primary" style="width:120px;background-color:#5cb85c" href="/metered/">&lt;&lt; Back</a>
+                    <br>
+                    <br>
+                    <b>Last Month Data Usage</b>
+                </div>
+                <br>
+                <div class="data-table">
+                    <div class="clsInfo">
+                        Last month data usage gets data from Azure API management service. This API service gives the number of API calls made by the customer for the last month. The invoice amount is the product of number of API calls made by the customer and rate per call ($5).
+                        <br>
+                        <br>
+                        Click on 'Invoice Customer' creates an invoice to the customer in stripe for the last month data usage. When clicking on 'Invoice Customer' a stripe API call is made to create invoice.
+                    </div>
+                    <table border="1" cellpadding="7" cellspacing="7">
+                        <tbody>
+                            <tr>
+
+                                <th>Customer Name</th>
+                                <th>Description</th>
+                                <th>Total Calls</th>
+                                <th>Month</th>
+                                <th>Rate</th>
+                                <th>Total Amount</th>
+                                <th width="140px"></th>
+
+                            </tr>
+
+                           
+                            <tr>
+
+                                <td>@Model.AzureUsage.CustomerName</td>
+
+                                <td>@Model.AzureUsage.Description</td>
+                                <td>@Model.AzureUsage.TotalCalls</td>
+                                <td>
+                                    @Model.AzureUsage.Month
+
+                                </td>
+                                <td>$@Model.AzureUsage.RatePerCall/Call</td>
+                                <td>$@Model.AzureUsage.TotalAmount</td>
+
+                                <td>
+                                    <a class="a-inside edit btn btn-primary" style="background-color:#5cb85c" href="/metered/createInvoice/@Model.AzureUsage.StripeCustomerId">Invoice Customer </a>
+                                </td>
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="page-data">
+                <div style="margin-left:10px">
+                    <b>Stripe Previous Invoices</b>
+                </div>
+
+                <br>
+                <div class="data-table">
+                    <div class="clsInfo">
+                        All the previous invoices created for the customer in stripe are given below. A stripe API call is made to get these data.
+                        <br>
+                        <br>
+                        Clicking on 'View Invoice' will take you to stripe account where you can view the invoice details.
+                    </div>
+                    <table border="1" cellpadding="7" cellspacing="7">
+                        <tbody>
+                            <tr>
+                                <th>#</th>
+                                <th>Stripe Customer Id</th>
+                                <th>Description</th>
+
+                                <th>Amount</th>
+                                <th></th>
+
+                            </tr>
+
+
+                            @for (int i = 0; i < Model.Invoices.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i+1)</td>
+                                    <td>@Model.Invoices[i].CustomerId</td>
+                                    <td>@Model.Invoices[i].Description</td>
+
+                                    <td>$@(Model.Invoices[i].Amount/100)</td>
+                                    <td>
+
+                                        <a class="a-inside edit btn btn-primary" style="background-color:#5bc0de" target="_blank" href="https://dashboard.stripe.com/test/customers/@Model.Invoices[i].CustomerId">View Invoice</a>
+
+
+                                    </td>
+
+
+                                </tr>
+                            }
+                            @*<tr>
+                                <td>1</td>
+                                <td>cus_66IXO1HLB4b073</td>
+                                <td>Invoice 04-22-2015:1429695358295</td>
+
+                                <td>$0</td>
+                                <td>
+
+                                    <a class="a-inside edit btn btn-primary" style="width:120px;background-color:#5bc0de" target="_blank" href="https://dashboard.stripe.com/test/customers/cus_66IXO1HLB4b073">View Invoice</a>
+
+
+                                </td>
+
+
+                            </tr>*@
+
+
+                           
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+</div>

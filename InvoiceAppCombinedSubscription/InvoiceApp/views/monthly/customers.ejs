@@ -1,0 +1,50 @@
+<%- include ../layouts/header.ejs %>
+
+        <div class="page-data">
+		   
+         <div class="data-table">
+		  <a class="a-inside edit" style="width:120px;background-color:#5cb85c" href="/"><< Back</a> 
+		 <br/>
+		  <br/>
+		 <div class='clsInfo'>
+			 List of customers and their stripe customer Ids are given below.
+			 <br/>
+			 Click on 'View Subscription' to view / create the subscription for the customer.
+		   </div>
+
+            <table border="1" cellpadding="7" cellspacing="7">
+                <tr>
+                    <th>Name</th>
+                    <th>Stripe Customer Id</th>
+                    
+					<th width="175px"></th>
+                </tr>
+                               
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>
+                 
+                <tr>
+                     <td><%=data[i].customerName%></td>
+                    <td><%=data[i].stripeCustomerId%></td>
+                   
+					
+                   <td>
+                        <a class="a-inside edit" href="/invoiceapp/monthly/customer/<%=data[i].stripeCustomerId%>">View Subscription</a>         
+                    </td>
+                </tr>
+            <% }
+            
+             }else{ %>
+                 <tr>
+                    <td colspan="3">No Data</td>
+                 </tr>
+            <% } %>
+                
+                              
+                
+            </table>
+         </div>
+        </div>
+        
+<%- include ../layouts/footer.ejs %>

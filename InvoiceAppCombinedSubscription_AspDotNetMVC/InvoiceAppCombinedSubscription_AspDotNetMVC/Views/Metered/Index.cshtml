@@ -1,0 +1,57 @@
+﻿@model List<Stripe.StripeCustomer>
+@{
+    ViewBag.Title = "Customers";
+}
+
+
+<div>
+    <div id="wrapper">
+        <div class="page-header"><h2>Metered Subscription</h2><h4>Customers</h4></div>
+        <div class="page-container">
+
+
+            <div class="page-data">
+
+
+                <div class="data-table">
+                    <a class="a-inside edit btn btn-primary" style="width:120px;background-color:#5cb85c" href="/">&lt;&lt; Back</a>
+                    <br>
+                    <br>
+                    <div class="clsInfo">
+                        List of customers and their customer Ids are given below.
+                        Click on 'View Invoices' to create invoice or view previous invoices.
+                    </div>
+                    <table border="1" cellpadding="7" cellspacing="7">
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <th>Stripe Customer Id</th>
+
+                                <th width="120px"></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Description</td>
+                                    <td>@item.Id</td>
+
+
+                                    <td>
+                                        <a class="a-inside edit btn btn-primary" href="/metered/customer/cus_66IXO1HLB4b073">View Invoices</a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+</div>

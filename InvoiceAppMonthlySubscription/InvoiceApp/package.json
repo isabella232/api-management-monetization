@@ -1,0 +1,19 @@
+{
+    "name": "Invoice",
+    "version": "0.0.1",
+    "private": true,
+    "main": "app.js",
+    "description": "Invoice App",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "ejs": "^1.0.0",
+        "express": "3.5.1",
+        "express-myconnection": "1.0.4",
+        "jade": "*",
+        "mysql": "2.2.0",
+        "stripe": "3.0.2",
+        "request": "2.51.0"
+    }
+}

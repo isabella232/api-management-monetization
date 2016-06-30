@@ -1,0 +1,46 @@
+<%- include layouts/header.ejs %>
+
+        <div class="page-data">
+         <div class="data-btn">
+          
+         </div>
+         <div class="data-table">
+            <table border="1" cellpadding="7" cellspacing="7">
+                <tr>
+                    
+                    <th>Name</th>
+                    <th>API</th>
+					<th>Date</th>
+                    <th>Total Calls</th>
+                    <th>Success Calls</th>
+                    
+                </tr>
+                               
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>
+                 
+                <tr>
+                    
+                    <td><%=data[i].name%></td>
+                    <td><%=data[i].apiId%></td>
+					<td><%=data[i].date%></td>
+                    <td><%=data[i].callCountTotal%></td>
+                    <td><%=data[i].callCountSuccess%></td>
+                   
+                </tr>
+            <% }
+            
+             }else{ %>
+                 <tr>
+                    <td colspan="5">No Data</td>
+                 </tr>
+            <% } %>
+                
+                              
+                
+            </table>
+         </div>
+        </div>
+        
+<%- include layouts/footer.ejs %>

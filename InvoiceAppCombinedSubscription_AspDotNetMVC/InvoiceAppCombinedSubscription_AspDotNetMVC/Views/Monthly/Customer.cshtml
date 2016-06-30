@@ -1,0 +1,108 @@
+﻿@model List<Stripe.StripeSubscription>
+@{
+    ViewBag.Title = "Subscription";
+}
+
+
+<div>
+    <div id="wrapper">
+        <div class="page-header"><h2>Monthly Subscription</h2><h4>Subscriptions</h4></div>
+        <div class="page-container">
+
+
+
+            <div class="page-data">
+
+                <div class="data-table">
+                    <a class="a-inside edit btn btn-primary" style="width:120px;background-color:#5cb85c" href="/monthly"> &lt;&lt; Back </a>
+
+                    <br>
+                    <br>
+                    <div class="clsInfo">
+                        Click on 'Create Subcription' to create a monthly subscription plan for the customer.There is already a monthly plan created in stripe which has fixed monthly invoice of $200.When clicking on 'Create Subcription' a stripe API call is made to create subcription and the montly plan is associated with the stripe subscription.
+                    </div>
+                    <form method="post" action="">
+
+                        <a class="a-inside edit btn btn-primary" style="background-color:#5cb85c" href="/monthly/createSubscription?customerId=@ViewBag.CustomerId">Create Subscription</a>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+
+            <div class="page-data">
+                <div style="margin-left:10px">
+                    <b>Stripe Subscriptions</b>
+                </div>
+
+
+                <div class="data-table">
+                    <div class="clsInfo">
+
+                        The subscription made by the customer is given below.
+                        <br>
+                        Subcription can be deleted which will stop invoice to the customer. Click on 'Delete Subscription' to delete subscription. When clicking on Delete Subcription a stripe API call is made to delete the stripe subscription.
+                    </div>
+                    <table border="1" cellpadding="7" cellspacing="7">
+                        <tbody>
+                            <tr>
+                                <th>#</th>
+                                <th>Subscription Id</th>
+                                <th>Plan Name</th>
+
+                                <th>Amount</th>
+                                <th></th>
+
+                            </tr>
+
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i+1)</td>
+                                    <td>@Model[i].Id</td>
+                                    <td>@Model[i].StripePlan.Name</td>
+
+                                    <td>$@(Model[i].StripePlan.Amount/100)</td>
+                                    <td>
+
+                                        <a class="a-inside edit btn btn-primary" style="background-color:#5bc0de" href="/monthly/cancelSubscription?customerId=@ViewBag.CustomerId&subscriptionId=@Model[i].Id">Delete Subscription</a>
+
+
+                                    </td>
+
+
+                                </tr>
+                            }    
+
+                            @*<tr>
+                                <td>1</td>
+                                <td>sub_67OAT0l8enfaqP</td>
+                                <td>Monthly Plan</td>
+
+                                <td>$200</td>
+                                <td>
+
+                                    <a class="a-inside edit" style="width:120px;background-color:#5bc0de" href="/invoiceapp/monthly/stripe/cancelSubscription/cus_66IXO1HLB4b073/sub_67OAT0l8enfaqP">Delete Subscription</a>
+
+
+                                </td>
+
+
+                            </tr>*@
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+</div>

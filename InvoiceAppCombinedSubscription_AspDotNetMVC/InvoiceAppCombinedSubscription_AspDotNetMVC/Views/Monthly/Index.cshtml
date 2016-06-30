@@ -1,0 +1,118 @@
+﻿@model List<Stripe.StripeCustomer>
+@{
+    ViewBag.Title = "Customers";
+}
+
+
+<div>
+    <div id="wrapper">
+        <div class="page-header"><h2>Monthly Subscription</h2><h4>Customers</h4></div>
+        <div class="page-container">
+
+
+            <div class="page-data">
+
+                <div class="data-table">
+                    <a class="a-inside edit btn btn-primary" style="width:120px;background-color:#5cb85c" href="/">&lt;&lt; Back</a>
+                    <br>
+                    <br>
+                    <div class="clsInfo">
+                        List of customers and their stripe customer Ids are given below.
+                        <br>
+                        Click on 'View Subscription' to view / create the subscription for the customer.
+                    </div>
+
+                    <table border="1" cellpadding="7" cellspacing="7">
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <th>Stripe Customer Id</th>
+
+                                <th width="175px"></th>
+                            </tr>
+
+
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Description</td>
+                                    <td>@item.Id</td>
+
+
+                                    <td>
+                                        <a class="a-inside edit btn btn-primary" href="/monthly/customer/cus_66IXO1HLB4b073">View Subscription</a>
+                                    </td>
+                                </tr>
+                            }
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+    @*<div class="page-container">
+
+
+        <div class="page-data">
+
+            <div class="data-table">
+                <a class="a-inside edit" style="width:120px;background-color:#5cb85c" href="/">&lt;&lt; Back</a>
+                <br>
+                <br>
+                <div class="clsInfo">
+                    List of customers and their stripe customer Ids are given below.
+                    <br>
+                    Click on 'View Subscription' to view / create the subscription for the customer.
+                </div>
+
+                <table border="1" cellpadding="7" cellspacing="7">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Stripe Customer Id</th>
+
+                            <th width="175px"></th>
+                        </tr>
+
+                      @foreach (var item in Model)
+                      {
+                        <tr>
+                            <td>@item.Description</td>
+                            <td>@item.Id</td>
+
+
+                            <td>
+                                <a class="a-inside edit" href="/invoiceapp/monthly/customer/cus_66IXO1HLB4b073">View Subscription</a>
+                            </td>
+                        </tr>
+                      }
+
+                        <tr>
+                            <td>Dave Nielsen</td>
+                            <td>cus_66IXO1HLB4b073</td>
+
+
+                            <td>
+                                <a class="a-inside edit" href="/invoiceapp/monthly/customer/cus_66IXO1HLB4b073">View Subscription</a>
+                            </td>
+                        </tr>
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>*@
+</div>

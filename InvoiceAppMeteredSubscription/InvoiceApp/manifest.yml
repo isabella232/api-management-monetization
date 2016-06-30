@@ -1,0 +1,3 @@
+applications:
+- name:    cf-node-api-mgmt-metered-subscription
+  host:    cf-node-api-mgmt-metered-subscription

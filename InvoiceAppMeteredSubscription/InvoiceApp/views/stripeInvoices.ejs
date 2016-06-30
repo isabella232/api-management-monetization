@@ -1,0 +1,114 @@
+<%- include layouts/header.ejs %>
+		 
+		 
+		 <div class="page-data">
+		 <div style="margin-left:10px">
+		 <a class="a-inside edit" style="width:120px;background-color:#5cb85c" href="/"><< Back</a> 
+		 <br/>
+		  <br/>
+        <b>Last Month Data Usage</b>
+		</div>
+		<br/>
+         <div class="data-table">
+		 <div class='clsInfo'>
+		 Last month data usage gets data from Azure API management service. This API service gives the number of API calls made by the customer for the last month. The invoice amount is the product of number of API calls made by the customer and rate per call ($5).
+		 <br/>
+		 <br/>
+		 Click on 'Invoice Customer' creates an invoice to the customer in stripe for the last month data usage. When clicking on 'Invoice Customer' a stripe API call is made to create invoice.
+		 </div>
+            <table border="1" cellpadding="7" cellspacing="7">  
+                <tr>
+                    
+                    <th>Customer Name</th>                   
+					<th>Description</th>					
+                    <th>Total Calls</th>
+					<th>Month</th>					
+					<th>Rate</th>
+                    <th>Total Amount</th>
+					<th width="140px"></th>
+                    
+                </tr>
+                 
+                <tr>
+                    
+                    <td><%=azureData.customerName%></td>
+                    
+					<td><%=azureData.invoiceDescription%></td>
+                    <td><%=azureData.totalApiCalls%></td>
+                    <td>
+					<%=azureData.year%>-<%=azureData.month%>
+					
+					</td>
+					<td><%=azureData.rate%></td>
+					<td>$<%=azureData.totalAmount%></td>
+					
+                   <td>
+				    <a class="a-inside edit" style="width:120px;background-color:#5cb85c" href="/invoiceApp/stripe/createInvoice/<%=azureData.stripeCustomerId%>/<%=azureData.totalAmount%>/<%=azureData.invoiceDescription%>">Invoice Customer </a> 
+                    </td>
+					
+				
+                </tr>
+            
+            </table>
+         </div>
+        </div>
+
+		 
+        <div class="page-data">
+		<div style="margin-left:10px">
+         <b>Stripe Previous Invoices</b>
+		</div>
+       
+		<br/>
+         <div class="data-table">
+		 <div class='clsInfo'>
+			All the previous invoices created for the customer in stripe are given below. A stripe API call is made to get these data.
+		 <br/>
+		 <br/>
+		 Clicking on 'View Invoice' will take you to stripe account where you can view the invoice details.
+		 </div>
+            <table border="1" cellpadding="7" cellspacing="7">
+                <tr>
+                     <th>#</th>
+                    <th>Stripe Customer Id</th>
+					<th>Description</th>
+                   
+					<th>Amount</th>
+                     <th></th>
+					 
+                </tr>
+                               
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>
+                 
+                <tr>
+					<td><%=i+1%></td>
+                    <td><%=data[i].customer%></td>
+					<td><%=data[i].description%></td>
+                    
+                    <td>$<%=data[i].amount/100%></td>
+					<td>
+				    
+							<a class="a-inside edit" style="width:120px;background-color:#5bc0de" target="_blank" href="https://dashboard.stripe.com/test/customers/<%=data[i].customer%>">View Invoice</a>  
+					
+						
+                    </td>
+					
+                  
+                </tr>
+            <% }
+            
+             }else{ %>
+                 <tr>
+                    <td colspan="5">No Data</td>
+                 </tr>
+            <% } %>
+                
+                              
+                
+            </table>
+         </div>
+        </div>
+        
+<%- include layouts/footer.ejs %>
